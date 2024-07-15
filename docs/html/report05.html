@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Moppi's Site</title>
+        <link rel="stylesheet" href="../css/styles_report03.css" type="text/css" />
+    </head> 
+    <body>
+        <span class="title"　align="left">Moppi's Site</span>
+        <script language="JavaScript">
+            function lastMDF (){
+                var dateObj = new Date( document.lastModified );
+                var dateYear = dateObj.getFullYear();
+                var dateMon = dateObj.getMonth() + 1;
+                var dateDate = dateObj.getDate();
+                var dateHour = dateObj.getHours();
+                var dateMin = dateObj.getMinutes();
+                document.write( "このページの最終更新日時は " );
+                document.write( dateYear + '年' + dateMon + '月' + dateDate + '日 ' ); 
+                document.write( dateHour + ':' + dateMin + 'です<br>' );
+            }
+            lastMDF();
+        </script>
+        <hr>
+        <div class="main_contents">
+            <h2>あなたが誕生してどれほど経過したのかを調べます。</h2>
+        
+            <form id="batth" action="#">
+                <p>
+                    <input type="text" id="year">年
+                    <input type="text" id="mon">月
+                    <input type="text" id="date">日
+                    <input type="button" onclick="calc_time()" value="OK">
+                </p>
+            </form>
+            <p id="El">ここに表示されます。</p>
+            <script language="JavaScript">
+                function calc_time(){
+                    var barth_year = document.getElementById("year");
+                    var barth_year_value = barth_year.value;
+                    var barth_mon = document.getElementById("mon");
+                    var barth_mon_value = barth_mon.value;
+                    var barth_date = document.getElementById("date");
+                    var barth_date_value = barth_date.value;
+                    myD = new Date();
+                    myYear = myD.getYear();
+                    myYear4 = (myYear < 2000) ?myYear+1900 : myYear;
+                    myMonth = myD.getMonth() + 1;
+                    myDate = myD.getDate();
+                    myDay = myD.getDay();
+                    myHours = myD.getHours();
+                    myMinutes = myD.getMinutes();
+                    mySeconds = myD.getSeconds();
+                    barth = new Date(barth_year_value,barth_mon_value,barth_date_value);
+                    Time = myD.getTime() - barth.getTime();
+                    El_days = Math.floor(Time/(1000*60*60*24))
+                    El_hour = Math.floor(Time%(1000*60*60*24)/(1000*60*60));
+                    El_min = Math.floor((Time%(1000*60*60*24)%(1000*60*60)/(1000*60)));
+                    El_sec = Math.floor((Time%(1000*60*60*24)%(1000*60*60)%(1000*60))/1000);
+                    var Elapsed = document.getElementById("El");
+                    Elapsed.innerHTML = "あなたが誕生して"+El_days+"日"+El_hour+"時"+El_min+"分"+El_sec+"秒 経ちました。　これからの人生もどうかお幸せに。<br>";
+                }
+            </script>
+            <h2>入力された数値を画像で表します</h2>
+            <form action="Number_img">
+                <p>
+                    <input type="text" id="IN">
+                    <input type="button" onclick="Image_display()" value="OK">
+                </p>
+            </form>
+            <p id="Ni">ここに表示されます.</p>
+            <script language="JavaScript">
+                function Image_display(){
+                    var inputed_Number = document.getElementById("IN");
+                    var inputed_Number_Value = inputed_Number.value;
+                    var i;
+                    var img_num_array = inputed_Number_Value.split("");
+                    var result;
+                    for(i=0; i<img_num_array.length; i++){
+                        if(i==0){
+                            result="<img src='../img/katatsumuri/"+img_num_array[i]+".gif'>";
+                        }else {
+                            result = result + "<img src='../img/katatsumuri/"+img_num_array[i]+".gif'>";
+                        }
+                    }
+
+                    var Number_image = document.getElementById("Ni");
+                    Number_image.innerHTML = result;
+                }
+            </script>
+
+            <h2>他のレポート</h2>
+            <p><a href="report03.html">report03：自己紹介</a></p>
+            <p><a href="report04.html">report04：現在時刻の表示/明日まで時間</a></p>
+            <p><a href="report06.html">report06：It wake up to hover the mouse over it./fibonacci/おみくじ</a></p>
+        </div>
+    </body> 
+</html>

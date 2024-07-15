@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Moppi's Site</title>
+        <link rel="stylesheet" href="../css/styles_report03.css" type="text/css" />
+    </head> 
+    <body>
+        <span class="title"　align="left">Moppi's Site</span>
+        <script language="JavaScript">
+            function lastMDF (){
+                var dateObj = new Date( document.lastModified );
+                var dateYear = dateObj.getFullYear();
+                var dateMon = dateObj.getMonth() + 1;
+                var dateDate = dateObj.getDate();
+                var dateHour = dateObj.getHours();
+                var dateMin = dateObj.getMinutes();
+                document.write( "このページの最終更新日時は " );
+                document.write( dateYear + '年' + dateMon + '月' + dateDate + '日 ' ); 
+                document.write( dateHour + ':' + dateMin + 'です<br>' );
+            }
+            lastMDF();
+        </script>
+        <hr>
+        <div class="main_contents">
+            <h2>It wake up to hover the mouse over it.</h2>
+            <img id="wakeup" src="../img/wakeup/sleep.png" onmouseover="awake()" onmouseleave="sleep()" height="10%" width="10%">
+            <script lang="javascript">
+                function awake(){
+                    moppi = document.getElementById("wakeup");
+                    moppi.src = "../img/wakeup/awake.png";
+                }
+                function sleep(){
+                    moppi = document.getElementById("wakeup");
+                    moppi.src = "../img/wakeup/sleep.png";
+                }
+            </script>
+            <h2>fibonacci.</h2>
+            <form action="fibo">
+                <p>
+                    <input type="text" id="IN_fibo">
+                    <input type="button" onclick="fibo()" value="OK">
+                </p>
+            </form>
+            <p>再起的処理の表示：</p>
+            <p id=Ni>ここに表示</p>
+            <br>
+            <p>フィボナッチの要素</p>
+            <p id=el_fibo>ここに表示</p>
+
+            <script lang="javascript">
+                function fibo(){
+                    var inputed_Number = document.getElementById("IN_fibo");
+                    var inputed_Number_Value = inputed_Number.value;
+                    var fibo_num = fibo_Resurgent(inputed_Number_Value);
+                    var fibo_num_id = document.getElementById("Ni");
+                    var  fibo_el_id= document.getElementById("el_fibo");
+                    var fibo_el_array = [0,1];
+                    var fibo_el;
+                    fibo_num_id.innerHTML = fibo_num;
+
+                    for(var i = 2; i <=inputed_Number_Value; i++){
+                        fibo_el_array[i]=fibo_el_array[i-1] + fibo_el_array[i-2]
+                    }
+                    for(i=0; i <=inputed_Number_Value; i++){
+                        if(i==0){
+                            fibo_el = "　F"+i+"="+fibo_el_array[i]+"<br>";
+                        }else{
+                            fibo_el += "F"+i+"="+fibo_el_array[i]+"<br>";
+                        }
+                    }
+                    fibo_el_id.innerHTML = fibo_el;
+                }
+                function fibo_Resurgent(n){
+                    var ans = 0;
+                    if(n==0){
+                        return 0;
+                    }else if(n==1){
+                        return 1;
+                    }else{
+                        ans = fibo_Resurgent(n-1) + fibo_Resurgent(n-2);
+                    }
+                    return ans;
+                }
+            </script>
+            <h2>幵おみくじ幵</h2>
+            <form action="fibo">
+                <p>
+                    <input type="button" onclick="mikuji()" value="おみくじを引く">
+                </p>
+            </form>
+            <p>幵結果幵</p>
+            <P><img id=mikuji_re src="../img/mikuji/unsei.png"></p>
+            <br>
+            <script lang="javascript">
+                function mikuji(){
+                    var mikuji = document.getElementById("mikuji_re");
+                    var rand_num =  getRandomArbitrary(0,11);
+                    if(rand_num==0){
+                        mikuji.src='../img/mikuji/dai.png';
+                    }else if(1<=rand_num && rand_num<=3){
+                        mikuji.src ='../img/mikuji/chu.png';
+                    }else if(4<=rand_num && rand_num<=7){
+                        mikuji.src='../img/mikuji/shou.png';
+                    }else if(8<=rand_num && rand_num<=9){
+                        mikuji.src='../img/mikuji/kyou.png';
+                    }else if(rand_num == 10){
+                        mikuji.src='../img/mikuji/daikyou.png';
+                    }else{
+                        console.log("エラーです");
+                    }
+                }
+                function getRandomArbitrary(min, max) {
+                    return Math.floor(Math.random() * (max - min) + min);
+                }
+            </script>
+            <h2>他のレポート</h2>
+            <p><a href="report03.html">report03：自己紹介</a></p>
+            <p><a href="report04.html">report04：現在時刻の表示/明日まで時間</a></p>
+            <p><a href="report05.html">report05：生年月日から現在まで/入力数字に対応した画像表示</a></p>
+        </div>
+    </body> 
+</html>
