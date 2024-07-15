@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Moppi's Site</title>
+        <link rel="stylesheet" href="./css/styles_report03.css" type="text/css" />
+    </head> 
+    <body>
+        <span class="title"　align="left">Moppi's Site</span>
+        <script language="JavaScript">
+            function lastMDF (){
+                var dateObj = new Date( document.lastModified );
+                var dateYear = dateObj.getFullYear();
+                var dateMon = dateObj.getMonth() + 1;
+                var dateDate = dateObj.getDate();
+                var dateHour = dateObj.getHours();
+                var dateMin = dateObj.getMinutes();
+                document.write( "このページの最終更新日時は " );
+                document.write( dateYear + '年' + dateMon + '月' + dateDate + '日 ' ); 
+                document.write( dateHour + ':' + dateMin + 'です<br>' );
+            }
+            lastMDF();
+        </script>
+        <hr>
+        <div class="main_contents">
+            <h1>レポート</h1>
+            <h2>第4回</h2>
+            <form name="count">現在時刻：<input type="text" name="time" size="40" disabled=ture></form>
+            <script language="JavaScript">
+                var count = function(){
+                    dateObj = new Date();
+                    var dateYear = dateObj.getFullYear();
+                    var dateArray = [ "0" + (dateObj.getMonth() + 1),"0" + dateObj.getDay(),"0" + dateObj.getHours(),"0" + dateObj.getMinutes(),"0" + dateObj.getSeconds()];
+                    for(let i=0; i < dateArray.length; i=i+1){
+                        dateArray[i] = dateArray[i].substr(dateArray[i].length-2, 2);
+                    }
+                    document.count.time.value= dateYear + "年" + dateArray[0] + "月" + dateArray[1] + "日 " + dateArray[2] + ":" + dateArray[3] + ":" + dateArray[4];
+                }
+                lastMDF();
+                setInterval(count, 1000);
+            </script>
+            <h2>他のレポート</h2>
+            <p><a href="report03.html">report03：自己紹介</a></p>
+            <p><a href="report05.html">report05：生年月日から現在まで/入力数字に対応した画像表示</a></p>
+            <p><a href="report06.html">report06：It wake up to hover the mouse over it./fibonacci/おみくじ</a></p>
+        </div>
+    </body> 
+</html>
